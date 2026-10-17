@@ -12,6 +12,25 @@ async function start(page, url = "./") {
   await page.getByRole("button", { name: "Start run" }).click();
 }
 async function geometry(page, w, h) {
+  // A viewport change can resolve before ResizeObserver has applied the new
+  // high-DPI canvas size. Wait for the actual bounds, never a fixed delay.
+  await expect
+    .poll(() =>
+      page.evaluate(
+        ({ w, h }) => {
+          const c = document.querySelector("canvas").getBoundingClientRect();
+          const d = document.querySelector("#drag").getBoundingClientRect();
+          return (
+            innerWidth === w &&
+            innerHeight === h &&
+            c.bottom <= h &&
+            d.bottom <= h
+          );
+        },
+        { w, h },
+      ),
+    )
+    .toBe(true);
   const info = await page.evaluate(() => {
     const r = document.querySelector("canvas").getBoundingClientRect(),
       d = document.querySelector("#drag").getBoundingClientRect();
