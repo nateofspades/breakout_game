@@ -17,6 +17,11 @@ test("real startup, keyboard, pause and persistent music transport", async ({
   await expect
     .poll(() => page.evaluate(() => prismAudio.snapshot().state))
     .toBe("running");
+  // AudioContext.state can become running before the output thread advances its
+  // first quantum, especially on fast headless CI runners.
+  await expect
+    .poll(() => page.evaluate(() => prismAudio.snapshot().elapsed))
+    .toBeGreaterThan(0.03);
   const before = await page.evaluate(() => window.prismAudio.snapshot());
   expect(before.contextCount).toBe(1);
   await page.keyboard.press("ArrowRight");
@@ -27,6 +32,8 @@ test("real startup, keyboard, pause and persistent music transport", async ({
   const after = await page.evaluate(() => window.prismAudio.snapshot());
   expect(after.startedAt).toBe(before.startedAt);
   expect(after.sourceCount).toBe(1);
-  expect(after.elapsed).toBeGreaterThan(before.elapsed);
+  await expect
+    .poll(() => page.evaluate(() => prismAudio.snapshot().elapsed))
+    .toBeGreaterThan(before.elapsed);
   expect(errors).toEqual([]);
 });
