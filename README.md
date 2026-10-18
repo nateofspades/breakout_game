@@ -1,10 +1,14 @@
 # Prism Break — private preparation
 
+[Older live deployment](https://nateofspades.github.io/breakout_game/) — the legacy site, not this private branch or an approved new URL.
+
+![Actual private-worktree gameplay](assets/screenshots/gameplay.png)
+
 **Not published or cleared for release.** Existing art, five formations, soundtrack and `prism-break.*` records/preferences are retained. Proposed branding/URL is confined to `docs/private-migration.md`. Gameplay screenshots were refreshed from actual private-worktree runs after the layout fix. Verification records below remain historical; see `/root/arcade-migration-audit/preparation/brick-*` for current execution evidence.
 
 Local review: `npm ci`, `npm run serve`, open `http://127.0.0.1:4279`. Stop a manual server before running `BASE_URL=http://127.0.0.1:4279 npm run test:browser` (all three browser projects). Unit tests: `npm test`. There is no build command. In this shared audit environment each server/test must run inside `flock /root/arcade-migration-audit/preparation/test.lock`. Install browsers with `npx playwright install --with-deps chromium firefox webkit` if necessary. Do not publish the repository root; runtime files are `index.html`, `style.css`, `src/`, `assets/prism.svg` plus the MIT `LICENSE`, not tests, evidence or migration docs.
 
-![Active gameplay](assets/screenshots/gameplay.png)
+Private verification completed locally: **25 Vitest tests passed; 56 browser cases passed, 1 existing Firefox mobile-emulation case skipped, 0 failed/flaky**, across Chromium, Firefox and WebKit with one worker and real Web Audio through an isolated null sink. The 57-case enumeration was checked against the JSON report. Physical devices/speakers and public deployment were not verified.
 
 An original synthwave brick breaker: five handcrafted prism formations, a dusk-lit vector arena, and an original instrumental soundtrack. Static HTML, CSS, Canvas and vanilla JavaScript ES modules; no backend, ads or paid services.
 
@@ -50,4 +54,8 @@ CI uses npm ci and runs both suites on push to main and pull requests. [Verifica
 - src/storage.js — optional safe persistence
 - tests/ — Vitest and Playwright regressions
 
-[Live game](https://nateofspades.github.io/breakout_game/) · [MIT license](LICENSE)
+## Technology and credits
+
+The existing [MIT notice](LICENSE) credits **Nathan Burns (2026)** for this project. The original Canvas art, rules and **Prism Velocity** score/synthesis are preserved; this is not independent verification of every underlying right. Runtime code is static HTML/CSS and native ES modules with Canvas/Web Audio, not a bundled third-party game engine. Vitest, Playwright and Prettier are development tools, not runtime assets; keep `node_modules`, tests and reports out of a future served artifact rather than duplicating their full installations.
+
+[Private local review](http://127.0.0.1:4279/) · [MIT license](LICENSE). No new public deployment is claimed.
