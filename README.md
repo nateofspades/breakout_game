@@ -1,6 +1,6 @@
 # Prism Break — private preparation
 
-**Not published or cleared for release.** Existing art, five formations, soundtrack and `prism-break.*` records/preferences are retained. Proposed branding/URL is confined to `docs/private-migration.md`. Historical screenshots and verification records below are not new preparation results; see `/root/arcade-migration-audit/preparation/brick-*` for current execution evidence.
+**Not published or cleared for release.** Existing art, five formations, soundtrack and `prism-break.*` records/preferences are retained. Proposed branding/URL is confined to `docs/private-migration.md`. Gameplay screenshots were refreshed from actual private-worktree runs after the layout fix. Verification records below remain historical; see `/root/arcade-migration-audit/preparation/brick-*` for current execution evidence.
 
 Local review: `npm ci`, `npm run serve`, open `http://127.0.0.1:4279`. Stop a manual server before running `BASE_URL=http://127.0.0.1:4279 npm run test:browser` (all three browser projects). Unit tests: `npm test`. There is no build command. In this shared audit environment each server/test must run inside `flock /root/arcade-migration-audit/preparation/test.lock`. Install browsers with `npx playwright install --with-deps chromium firefox webkit` if necessary. Do not publish the repository root; runtime files are `index.html`, `style.css`, `src/`, `assets/prism.svg` plus the MIT `LICENSE`, not tests, evidence or migration docs.
 

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 for (const [width,height] of [[1920,1080],[1366,768],[768,1024],[390,844],[320,568],[844,390]]) {
   test(`all gameplay and music controls fit ${width}x${height}`, async ({page}) => {
     await page.setViewportSize({width,height});
-    await page.goto('/');
+    await page.goto('./');
     await page.locator('#primary').click();
     await page.locator('#launch').click();
     const geometry = await page.evaluate(() => ({
