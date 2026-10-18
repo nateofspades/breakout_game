@@ -7,7 +7,7 @@ export default defineConfig({
   fullyParallel: false,
   reporter: [["list"], ["json", { outputFile: "test-results/browser.json" }]],
   use: {
-    baseURL: process.env.LIVE_URL || "http://127.0.0.1:4279",
+    baseURL: process.env.BASE_URL || process.env.LIVE_URL || "http://127.0.0.1:4279",
     trace: "off",
     screenshot: "only-on-failure",
   },

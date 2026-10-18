@@ -332,9 +332,17 @@ kbd {
 .life {
   color: #fa7db5;
 }
+/* Audio controls stay above the scrollable editorial at laptop heights. */
 .music-panel {
-  margin-top: auto;
-  padding: 24px 0 5px;
+  order: -1;
+  flex-shrink: 0;
+  margin-top: 0;
+  padding: 0 0 16px;
+}
+.editorial {
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 .track {
   display: flex;
