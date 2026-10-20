@@ -1,4 +1,6 @@
-# Verification
+# Historical verification
+
+These are preserved original-release records, not BrikaVolt final-release counts or a fresh Codex review. The final mission supersedes old naming/publication planning; current commands are in README, current IP assessment in docs/IP_AUDIT.md, and exact local/live counts, review head, CI/Pages SHA and limits in `/root/arcade-final-migration/brikavoltgame/result.json` and `report.md`. Final screenshots replace earlier captures without rewriting Git history.
 
 ## Reproducible local execution
 

@@ -6,7 +6,7 @@ test("real startup, keyboard, pause and persistent music transport", async ({
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("./");
   await expect(
-    page.getByRole("heading", { name: "PRISM BREAK" }),
+    page.getByRole("heading", { name: "BrikaVolt", exact: true }),
   ).toBeVisible();
   expect(
     await page.evaluate(() => window.prismAudio.snapshot().contextCount),

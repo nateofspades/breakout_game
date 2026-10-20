@@ -59,6 +59,12 @@ if (
   Object.defineProperty(window, "prismTest", {
     value: Object.freeze({
       scenario(name) {
+        const dropType = name.startsWith("drop-") ? name.slice(5) : "";
+        if (["wide", "slow", "multi", "life"].includes(dropType)) {
+          g.mode = "playing";
+          g.balls = [{ x: 100, y: 500, r: 8, vx: 100, vy: -300 }];
+          g.drops = [{ x: g.paddle.x, y: g.paddle.y - 100, type: dropType }];
+        }
         if (name === "score") {
           g.mode = "playing";
           g.bricks = [{ x: 325, y: 210, w: 68, h: 26, hp: 1, max: 1, row: 0 }];

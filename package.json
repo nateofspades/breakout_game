@@ -1,12 +1,14 @@
 {
-  "name": "prism-break",
+  "name": "brikavolt",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "node scripts/build.js",
     "test": "vitest run --maxWorkers=1",
     "serve": "node scripts/serve.js",
-    "test:browser": "playwright test --workers=1"
+    "test:browser": "playwright test --workers=1",
+    "test:browser:audio": "node scripts/run-browser-tests.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0",

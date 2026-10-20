@@ -1,4 +1,6 @@
-# Private migration proposal — NOT publication authorization
+# Historical private migration proposal — superseded
+
+The owner's final release mission authorizes BrikaVolt, the in-place repository rename to `nateofspades/BrikaVolt_Game`, and publication at https://nateofspades.github.io/BrikaVolt_Game/ after verified gates. The following proposal/holds are preserved historical text, not current instructions. Do not revive the candidate name or infer legal clearance.
 
 Current neutral review title: **Prism Break**. Proposed later title: **Brick Blitz**.
 Proposed repository: `nateofspades/Brick_Blitz_Game`.

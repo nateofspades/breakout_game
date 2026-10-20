@@ -1,16 +1,16 @@
-# Prism Break — private preparation
+# BrikaVolt
 
-[Older live deployment](https://nateofspades.github.io/breakout_game/) — the legacy site, not this private branch or an approved new URL.
+[Play BrikaVolt](https://nateofspades.github.io/BrikaVolt_Game/)
 
-![Actual private-worktree gameplay](assets/screenshots/gameplay.png)
+![BrikaVolt active gameplay](assets/screenshots/gameplay.png)
 
-**Not published or cleared for release.** Existing art, five formations, soundtrack and `prism-break.*` records/preferences are retained. Proposed branding/URL is confined to `docs/private-migration.md`. Gameplay screenshots were refreshed from actual private-worktree runs after the layout fix. Verification records below remain historical; see `/root/arcade-migration-audit/preparation/brick-*` for current execution evidence.
+Five formations, armored bricks, four falling powerups and a continuous instrumental soundtrack in a dusk-lit vector arena. Static HTML, CSS, Canvas and vanilla JavaScript modules; no backend, ads or paid services. The owner's final release authorization supersedes earlier private holds and candidate names. Existing art, music, gameplay improvements and `prism-break.*` records/preferences are retained. See [IP assessment and provenance limits](docs/IP_AUDIT.md); publication is not legal clearance.
 
-Local review: `npm ci`, `npm run serve`, open `http://127.0.0.1:4279`. Stop a manual server before running `BASE_URL=http://127.0.0.1:4279 npm run test:browser` (all three browser projects). Unit tests: `npm test`. There is no build command. In this shared audit environment each server/test must run inside `flock /root/arcade-migration-audit/preparation/test.lock`. Install browsers with `npx playwright install --with-deps chromium firefox webkit` if necessary. Do not publish the repository root; runtime files are `index.html`, `style.css`, `src/`, `assets/prism.svg` plus the MIT `LICENSE`, not tests, evidence or migration docs.
+Local development: `npm ci`, `npm run serve`, open `http://127.0.0.1:4279`. Stop a manual server before browser testing (all three engines, one worker). Unit tests: `npm test`. `npm run build` creates the allowlisted `_site/` publication artifact: HTML, CSS, local modules, favicon, project screenshots and the unchanged MIT notice. Never publish the repository root, tests, private evidence or node_modules.
 
-The audited headless Linux command was `BASE_URL=http://127.0.0.1:4279 node /root/arcade-migration-prep/paddlepulsegame/scripts/run-browser-tests.js`, run from this Brick worktree under the shared lock. That existing sibling test-only runner supplies an isolated PulseAudio null sink and invokes **this worktree's** complete Playwright configuration; it does not load Paddle gameplay. Install `pulseaudio` on Linux. Plain `npm run test:browser` does not start an audio device: use an existing working PulseAudio output (`PULSE_SERVER`) or the documented private audit runner for headless Firefox. The sibling path is audit-environment-specific, not a portable runtime dependency.
+For headless Linux install `pulseaudio` and use `npm run test:browser:audio`. The repository-owned runner starts and cleans up an isolated null sink without changing a shared audio service. It exercises real AudioContext rendering/clock/signal, but discards physical speaker output. If `PULSE_SERVER` is already supplied it uses that output without stopping it. Plain `npm run test:browser` requires a working audio device, particularly Firefox.
 
-Private verification completed locally: **25 Vitest tests passed; 56 browser cases passed, 1 existing Firefox mobile-emulation case skipped, 0 failed/flaky**, across Chromium, Firefox and WebKit with one worker and real Web Audio through an isolated null sink. The 57-case enumeration was checked against the JSON report. Physical devices/speakers and public deployment were not verified.
+Final local release verification: **38 unit tests passed; 108 browser cases passed, 3 explicitly skipped, 0 failed/flaky** across Chromium, Firefox and WebKit, one worker. The three skips are Firefox's unsupported mobile contexts; its desktop contexts test all six sizes. The non-mutating automated paddle tracker also completed all five sectors (20,600 points). Exact review/remote/live execution evidence is maintained separately in the release report. Physical devices and speakers are not verified by browser emulation or a null audio sink.
 
 An original synthwave brick breaker: five handcrafted prism formations, a dusk-lit vector arena, and an original instrumental soundtrack. Static HTML, CSS, Canvas and vanilla JavaScript ES modules; no backend, ads or paid services.
 
@@ -44,9 +44,11 @@ Open http://127.0.0.1:4279/ (or set PORT for the local server). All game asset U
     npx playwright install --with-deps chromium firefox webkit
     npm run test:browser
 
+Headless Linux alternative: `npm run test:browser:audio`. Live verification: `LIVE_URL=https://nateofspades.github.io/BrikaVolt_Game/ npm run test:browser:audio`. Local-only deterministic scenario tests are explicitly skipped on the public host; Firefox does not support Playwright's `isMobile` contexts. Six viewport sizes are tested in every desktop browser engine: 1920×1080, 1366×768, 768×1024, 390×844, 320×568 and 844×390. Chromium and WebKit also run touch/mobile contexts.
+
 Vitest tests deterministic rules, geometry, lifecycle, pickups, storage and music abstraction. `node scripts/reachability.js` additionally exercises all five layouts using an automated mouse-style paddle tracker without deleting bricks or modifying score/lives; this is a reachability experiment, not a human-skill claim. Playwright exercises real startup, inputs, layouts, progression, highscore persistence and real Web Audio rendering across Chromium, Firefox and WebKit, one worker. Linux Firefox requires a working audio service (for headless servers, start PulseAudio with a null sink); the tests do not fake AudioContext rendering. Mutating scenario hooks require BOTH localhost and `?test=1`; production exposes read-only snapshots only.
 
-CI uses npm ci and runs both suites on push to main and pull requests. [Verification evidence and limitations](docs/verification.md). Automated mobile tests are emulation, not physical-device touch or subjective speaker/listening verification. No claim of universal 60 FPS is made; physics uses a fixed 120-Hz step with ≤2-pixel collision substeps, independent of rendering.
+CI uses npm ci and runs both suites on push to main and pull requests. On main, Pages publication depends on the verification job and deploys only `_site/` from the same checked-out SHA. [Historical verification evidence and limitations](docs/verification.md). Automated mobile tests are emulation, not physical-device touch or subjective speaker/listening verification. No claim of universal 60 FPS is made; physics uses a fixed 120-Hz step with ≤2-pixel collision substeps, independent of rendering.
 
 ## Structure
 
@@ -60,4 +62,4 @@ CI uses npm ci and runs both suites on push to main and pull requests. [Verifica
 
 The existing [MIT notice](LICENSE) credits **Nathan Burns (2026)** for this project. The original Canvas art, rules and **Prism Velocity** score/synthesis are preserved; this is not independent verification of every underlying right. Runtime code is static HTML/CSS and native ES modules with Canvas/Web Audio, not a bundled third-party game engine. Vitest, Playwright and Prettier are development tools, not runtime assets; keep `node_modules`, tests and reports out of a future served artifact rather than duplicating their full installations.
 
-[Private local review](http://127.0.0.1:4279/) · [MIT license](LICENSE). No new public deployment is claimed.
+[Play BrikaVolt](https://nateofspades.github.io/BrikaVolt_Game/) · [MIT license](LICENSE). Historical verification and private migration notes are retained for provenance, not current publication instructions.
